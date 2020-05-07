@@ -1,0 +1,18 @@
+# Comments
+
+###
+Multiline comments
+###
+
+# Integer declarations
+Int var1 = 0
+Int var2 = 0
+Int var3 = var1 + var2
+
+# example program
+
+int main()
+{
+  int var1 = 0;
+  return 0;
+}

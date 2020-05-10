@@ -1,17 +1,12 @@
-#include <iostream>
 #include "../headers/compiler.h"
-#include "../headers/preprocessor.h"
-#include "../headers/lexer.h"
-#include "../headers/parser.h"
+
+using namespace std;
+using namespace compiler;
 
 int main() {
+	// test source file
+	string sourceFile = "testSourceFile.txt";
 	Compiler compiler;
-	Preprocessor preprocessor;
-	Lexer lexer;
-	Parser parser;
-	compiler.compile();
-	preprocessor.preprocess();
-	lexer.tokenize();
-	parser.parse();
+	compiler.compile(sourceFile);
     return 0;
 }

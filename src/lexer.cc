@@ -1,6 +1,7 @@
-#include <iostream>
 #include "../headers/lexer.h"
 
+using namespace std;
+
 void Lexer::tokenize() {
-	std::cout << "Lexer\n";
-};
+	cout << "Lexer\n";
+}

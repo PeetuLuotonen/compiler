@@ -1,6 +1,13 @@
-#include <iostream>
 #include "../headers/compiler.h"
 
-void Compiler::compile() {
-	std::cout << "Compiler\n";
-};
+using namespace std;
+
+namespace compiler {
+	void Compiler::compile(string sourceFile) {
+		string preprocessedSourceFile = preprocessor.preprocess(sourceFile);
+		// test print
+		cout << preprocessedSourceFile;
+		lexer.tokenize();
+		parser.parse();
+	};
+}

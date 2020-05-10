@@ -1,6 +1,7 @@
-#include <iostream>
 #include "../headers/parser.h"
 
+using namespace std;
+
 void Parser::parse() {
-	std::cout << "Parser\n";
+	cout << "Parser\n";
 };

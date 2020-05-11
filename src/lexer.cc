@@ -3,5 +3,5 @@
 using namespace std;
 
 void Lexer::tokenize() {
-	cout << "Lexer\n";
+	// cout << "Lexer\n";
 }

@@ -3,5 +3,5 @@
 using namespace std;
 
 void Parser::parse() {
-	cout << "Parser\n";
+	// cout << "Parser\n";
 };

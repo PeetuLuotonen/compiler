@@ -8,5 +8,6 @@ int main() {
 	string sourceFile = "testSourceFile.txt";
 	Compiler compiler;
 	compiler.compile(sourceFile);
+    cin.get();
     return 0;
 }

@@ -1,3 +1,8 @@
-Hello
-Hello
-Hello
+# testi
+
+int main()
+{
+  # another comment
+  int var1 = 0;
+  return 0;
+}

@@ -53,7 +53,7 @@ string Preprocessor::preprocess(string sourceFile) {
 	string sourceCode = readFileToString(sourceFile);
     cout << "Unprocessed string: \n" << sourceCode << endl;
 	removeSinglelineComment(sourceCode);
-	removeWhitespace(sourceCode);
+	// removeWhitespace(sourceCode);
 	std::string cleanStr = removeMultilineComment(sourceCode);
     cout << "Processed string: " << cleanStr << endl;
 	return cleanStr;

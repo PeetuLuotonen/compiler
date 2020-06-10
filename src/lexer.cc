@@ -21,6 +21,7 @@ void Lexer::tokenize() {
 	while ((token = getNextToken()) != nullptr)
 	{
 		// add tokens to tokenStream
+		cout << token->m_tokenValue << endl;
 	}
 }
 
@@ -107,10 +108,9 @@ token_T* Lexer::lexerParseString()
 		str = str + m_lexer->c;
 		lexerAdvance();
 	}
-	cout << str << endl;
-	if (str.compare("int"))
+	if (str.compare("int") == 0)
 		return Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_TYPE, "int");
-	else if (str.compare("return"))
+	else if (str.compare("return") == 0)
 		return Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_KEY_WORD, "return");
 	else
 		return Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_IDENTIFIER, str);

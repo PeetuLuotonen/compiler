@@ -3,6 +3,15 @@
 #include "../headers/token.h"
 #include <string>
 #include <cctype>
+#define _CRTDBG_MAP_ALLOC
+#define DEBUG
+#ifdef DEBUG
+#define DBG_NEW new ( _NORMAL_BLOCK , __FILE__ , __LINE__ )
+#define new DBG_NEW
+#endif // DEBUG
+
+
+#define T TOKEN_STRUCT::tokenType
 
 
 using namespace std;
@@ -14,14 +23,15 @@ Lexer::Lexer(std::string ppSourceCode)
 
 Lexer::~Lexer()
 {
+	delete (m_lexer);
 }
 
 void Lexer::tokenize() {
 	token_T* token = nullptr;
+	TokenStream tStream;
 	while ((token = getNextToken()) != nullptr)
 	{
-		// add tokens to tokenStream
-		cout << token->m_tokenValue << endl;
+		tStream.addToStream(token);
 	}
 }
 
@@ -53,12 +63,12 @@ token_T* Lexer::getNextToken()
 
 		switch (m_lexer->c)
 		{
-		case '=': return lexerAdvanceWithToken(Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_EQUALS   , "=")); break;
-		case '(': return lexerAdvanceWithToken(Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_LBRACKET , "(")); break;
-		case ')': return lexerAdvanceWithToken(Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_RBRACKET , ")")); break;
-		case '{': return lexerAdvanceWithToken(Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_LCBRACKET, "{")); break;
-		case '}': return lexerAdvanceWithToken(Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_RCBRACKET, "}")); break;
-		case ';': return lexerAdvanceWithToken(Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_SEMICOLON, ";")); break;
+		case '=': return lexerAdvanceWithToken(Token::initToken(T::TOKEN_EQUALS   , "=")); break;
+		case '(': return lexerAdvanceWithToken(Token::initToken(T::TOKEN_LBRACKET , "(")); break;
+		case ')': return lexerAdvanceWithToken(Token::initToken(T::TOKEN_RBRACKET , ")")); break;
+		case '{': return lexerAdvanceWithToken(Token::initToken(T::TOKEN_LCBRACKET, "{")); break;
+		case '}': return lexerAdvanceWithToken(Token::initToken(T::TOKEN_RCBRACKET, "}")); break;
+		case ';': return lexerAdvanceWithToken(Token::initToken(T::TOKEN_SEMICOLON, ";")); break;
 		}
 		// lexerAdvance();
 	}
@@ -84,7 +94,7 @@ token_T* Lexer::lexerGetString()
 
 	lexerAdvance();
 
-	return Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_STRING, string);
+	return Token::initToken(T::TOKEN_STRING, string);
 }
 
 
@@ -96,7 +106,7 @@ token_T* Lexer::lexerGetValue()
 		value = value + m_lexer->c;
 		lexerAdvance();
 	}
-	return Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_INTEGER, value);
+	return Token::initToken(T::TOKEN_INTEGER, value);
 }
 
 
@@ -109,11 +119,11 @@ token_T* Lexer::lexerParseString()
 		lexerAdvance();
 	}
 	if (str.compare("int") == 0)
-		return Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_TYPE, "int");
+		return Token::initToken(T::TOKEN_TYPE, "int");
 	else if (str.compare("return") == 0)
-		return Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_KEY_WORD, "return");
+		return Token::initToken(T::TOKEN_KEY_WORD, "return");
 	else
-		return Token::initToken(TOKEN_STRUCT::tokenType::TOKEN_IDENTIFIER, str);
+		return Token::initToken(T::TOKEN_IDENTIFIER, str);
 }
 
 void Lexer::lexerAdvance()

@@ -2,6 +2,8 @@
 #include <iostream>
 #include <string>
 #include "token.h"
+#include "tokenStream.h"
+
 
 typedef struct LEXER_STRUCT
 {
